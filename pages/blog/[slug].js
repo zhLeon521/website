@@ -8,6 +8,10 @@ import RemarkToc from 'remark-toc';
 import RemarkSlug from 'remark-slug';
 
 import TableOfContents from '../../components/TableOfContents'
+// import rehypePrettyCode from 'rehype-pretty-code';
+
+import { MDXComponents } from '../../components/MDXComponents/MDXComponents';
+
 
 
 
@@ -22,11 +26,10 @@ export default function Blog({ doc, mdxSource }) {
       </time>
       <hr className="my-8" />
 
-
       <div className="mt-8 flex flex-col justify-between lg:flex-row">
         <article className="w-full lg:w-[640px]">
           <div className="prose prose-zinc w-full max-w-none dark:prose-invert">
-            <MDXRemote {...mdxSource}  />
+            <MDXRemote {...mdxSource} components={MDXComponents} />
           </div>
         </article>
         <aside className="lg:min-w-[270px] lg:max-w-[270px]">
@@ -74,7 +77,7 @@ export const getStaticProps = async ({ params: { namespace, slug } }) => {
     parseFrontmatter: true,
     mdxOptions: {
       // table of contents, important!!
-      remarkPlugins: [RemarkToc, RemarkSlug],  
+      remarkPlugins: [RemarkToc, RemarkSlug],
       rehypePlugins: [],
     },
   });
