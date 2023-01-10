@@ -7,7 +7,6 @@ import { YuqueApi, Repo, Doc } from '../api/yuque-api';
 import RemarkToc from 'remark-toc';
 import RemarkSlug from 'remark-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
-import remarkCodeTitles from 'remark-code-titles';
 
 
 import TableOfContents from '../../components/TableOfContents'
@@ -78,11 +77,11 @@ export const getStaticProps = async ({ params: { namespace, slug } }) => {
     parseFrontmatter: true,
     mdxOptions: {
       // table of contents, important!!
-      remarkPlugins: [RemarkToc, RemarkSlug, remarkCodeTitles],
+      remarkPlugins: [RemarkToc, RemarkSlug],
       rehypePlugins: [rehypePrettyCode],
     },
   });
-  console.log(87878, mdxSource);
+  // console.log(87878, mdxSource);
   // console.log(9999, doc);
 
   return {
