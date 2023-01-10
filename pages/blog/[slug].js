@@ -10,7 +10,7 @@ import RemarkSlug from 'remark-slug';
 import TableOfContents from '../../components/TableOfContents'
 // import rehypePrettyCode from 'rehype-pretty-code';
 
-import { MDXComponents } from '../../components/MDXComponents/MDXComponents';
+import MDXComponents  from '../../components/MDXComponents/MDXComponents';
 
 
 
