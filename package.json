@@ -16,8 +16,10 @@
     "next-mdx-remote": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rehype-pretty-code": "^0.8.0",
     "remark-slug": "^7.0.1",
     "remark-toc": "^8.0.1",
+    "shiki": "^0.12.1",
     "tailwind-merge": "^1.8.1"
   },
   "devDependencies": {
