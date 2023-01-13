@@ -3,21 +3,25 @@ import Link from "next/link";
 import { formatDate } from "../lib/formatDate";
 import { YuqueApi, Repo, Doc } from './api/yuque-api';
 
+import ThemeSwitch from '../components/ThemeSwitch'
 
 export default function Home({ docs }) {
   return (
     <>
       <h1 className="text-6xl font-bold mb-8">Blog</h1>
+      <div className="my-4">
+        <ThemeSwitch />
+      </div>
       <hr className="my-8" />
       <ul className="flex flex-col gap-3">
         {docs.map(({ slug, title, description, updated_at }) => (
           <li key={slug}>
             <Link href={`/blog/${slug}`} className="border border-solid border-gray-300 rounded-lg shadow-md p-6 block">
-                <div className="flex justify-between">
-                  <h2>{title}</h2>
-                  <time dateTime={updated_at}>{formatDate(updated_at)}</time>
-                </div>
-                <p className="mt-4">{description}</p>
+              <div className="flex justify-between">
+                <h2>{title}</h2>
+                <time dateTime={updated_at}>{formatDate(updated_at)}</time>
+              </div>
+              <p className="mt-4">{description}</p>
             </Link>
           </li>
         ))}
