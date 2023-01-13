@@ -6,7 +6,7 @@ export default function Document() {
     <Html lang="en">
       <meta name="referrer" content="no-referrer" />
       <Head />
-      <body>
+      <body className="overflow-x-hidden bg-white text-black antialiased transition-colors dark:bg-gray-900 dark:text-white">
         <Main />
         <NextScript />
       </body>

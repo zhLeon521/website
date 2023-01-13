@@ -13,6 +13,7 @@ import TableOfContents from '../../components/TableOfContents'
 import MDXComponents  from '../../components/MDXComponents/MDXComponents';
 
 
+import LayoutWrapper from '../../components/LayoutWrapper';
 
 
 export default function Blog({ doc, mdxSource }) {
@@ -20,23 +21,25 @@ export default function Blog({ doc, mdxSource }) {
 
   return (
     <>
-      <h1 className="font-bold text-6xl mb-2">{title}</h1>
-      <time dateTime={updated_at} className="text-lg font-medium">
-        {formatDate(updated_at)}
-      </time>
-      <hr className="my-8" />
+      <div>
+        <h1 className="font-bold text-6xl mb-2">{title}</h1>
+        <time dateTime={updated_at} className="text-lg font-medium">
+          {formatDate(updated_at)}
+        </time>
+        <hr className="my-8" />
 
-      <div className="mt-8 flex flex-col justify-between lg:flex-row">
-        <article className="w-full lg:w-[640px]">
-          <div className="prose prose-zinc w-full max-w-none dark:prose-invert">
-            <MDXRemote {...mdxSource} components={MDXComponents} />
-          </div>
-        </article>
-        <aside className="lg:min-w-[270px] lg:max-w-[270px]">
-          <div className="sticky top-24">
-            <TableOfContents />
-          </div>
-        </aside>
+        <div className="mt-8 flex flex-col justify-between lg:flex-row">
+          <article className="w-full lg:w-[720px]">
+            <div className="prose prose-zinc pr-20 w-full max-w-none dark:prose-invert">
+              <MDXRemote {...mdxSource} components={MDXComponents} />
+            </div>
+          </article>
+          <aside className="lg:max-w-[270px]">
+            <div className="sticky top-24">
+              <TableOfContents />
+            </div>
+          </aside>
+        </div>
       </div>
     </>
   );
