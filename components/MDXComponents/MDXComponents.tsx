@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from './Image';
 import Link from '../Link';
 import { Pre } from './Pre';
 
