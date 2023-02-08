@@ -14,7 +14,7 @@ const PostCard = (props) => {
 
       <div className="flex-grow space-y-4">
         <h2 className="text-xl font-bold">{title}</h2>
-        <p className="mt-4 text-accent-5">{description}</p>
+        <p className="line-clamp-3 mt-4 text-accent-5 ">{description}</p>
       </div>
 
       <div className="flex items-center text-sm">
