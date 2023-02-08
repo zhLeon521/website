@@ -20,11 +20,7 @@ export default function Blog({ docs }) {
       <div className="mb-8 space-y-8">
         <h1 className="text-6xl font-bold mb-8">Blog Lists</h1>
         <hr className="my-8" />
-        <p className="text-accent-5">
-          已经发布了{docs.length}篇文章了已经发布了{docs.length}篇文章了 已经发布了{docs.length}篇文章了 已经发布了{docs.length}篇文章了 已经发布了
-          {docs.length}篇文章了 {docs.length}篇文章了{docs.length}篇文章了{docs.length}篇文章了{docs.length}篇文章了{docs.length}篇文章了{docs.length}
-          篇文章了{docs.length}篇文章了{docs.length}篇文章了{docs.length}篇文章了
-        </p>
+        <div className="text-accent-5">已经发布了{docs.length}篇文章了</div>
         <div className="relative">
           <input
             type="text"
@@ -41,7 +37,7 @@ export default function Blog({ docs }) {
         </div>
       </div>
 
-      {!filteredPosts.length && <div className="max-w-5xl text-center text-xl">文章咱没搜到</div>}
+      {!filteredPosts.length && <div className="text-center text-xl">文章咱没搜到</div>}
 
       <div className="grid gap-4 sm:grid-cols-2">
         {filteredPosts.map((post) => (
