@@ -28,7 +28,7 @@ export default function Blog({ docs }) {
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search articles"
             aria-label="Search articles"
-            className="w-full rounded-md border border-accent-2 bg-hong-bg py-2 px-3 pl-12 transition-colors duration-200 ease-linear focus:border-accent-5 focus:outline-none"
+            className="w-full rounded-full border border-accent-2 bg-hong-bg py-2 px-3 pl-12 transition-colors duration-200 ease-linear focus:border-accent-5 focus:outline-none"
             id="search"
           />
           <label htmlFor="search">

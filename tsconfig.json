@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_document.jsx"  ],
+, "pages/_document.jsx", "pages/api/yuqueApi-new.ts"  ],
   "exclude": [
     "node_modules"
   ]
