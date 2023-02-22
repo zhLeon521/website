@@ -8,11 +8,12 @@ import PostCard from '../components/PostCard/PostCard';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { YuqueAPI } from './api/yuqueApi-new';
+import Hero from '../components/Hero';
 
 export default function Home({ data }) {
   return (
     <>
-      <h1 className="text-6xl font-bold mb-8">Home 这是首页</h1>
+      <Hero />
 
       <div className="grid gap-4 sm:grid-cols-2">
         {data.data.map((post) => (
