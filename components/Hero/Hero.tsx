@@ -30,7 +30,7 @@ export const popUp: Variants = {
 };
 
 const Hero = () => {
-  const ref = useRef<HTMLCanvasElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     renderCanvas();
