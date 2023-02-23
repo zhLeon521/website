@@ -1,5 +1,5 @@
 // import { allSlugs, formatSlug, getPostBySlug } from '../../lib/mdx';
-import { formatDate } from '@/components//lib/formatDate';
+import { formatDate } from '@/lib/formatDate';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { YuqueApi, Repo, Doc } from '@/pages/api/yuque-api';
@@ -11,13 +11,13 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import TableOfContents from '@/components/TableOfContents';
 import MDXComponents from '@/components/MDXComponents/MDXComponents';
 
-import LayoutWrapper from '@/components/LayoutWrapper';
+import BlogListLayout from '@/layout/BlogListLayout';
 
 export default function Blog({ doc, mdxSource }) {
   const { title, updated_at } = doc;
 
   return (
-    <>
+    <BlogListLayout>
       <div>
         <h1 className="font-bold text-6xl mb-2">{title}</h1>
         <time dateTime={updated_at} className="text-lg font-medium">
@@ -38,7 +38,7 @@ export default function Blog({ doc, mdxSource }) {
           </aside>
         </div>
       </div>
-    </>
+    </BlogListLayout>
   );
 }
 

@@ -1,42 +1,91 @@
 import Link from '@/components/Link/Link';
 import Image from '@/components/MDXComponents/Image';
 
-// import { HERO_LINKS } from '@/config/links';
+import { motion, Variants } from 'framer-motion';
+
+const FadeContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { delayChildren: 0, staggerChildren: 0.1 },
+  },
+};
+
+const opacityVariant: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { delay: 0.2 } },
+};
+
+export const popUp: Variants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring',
+    },
+  },
+};
 
 const Hero = () => {
   return (
-    <div className="space-y-6 m-5 md:my-16">
-      <div className="flex flex-col-reverse gap-8 md:flex-row md:justify-between">
-        <div className="space-y-4 md:max-w-lg">
-          <h1 className="text-4xl font-bold text-hong-fg">zhongleiyang</h1>
-          <h2 className="text-lg font-medium text-accent-5">
-            SZU Student • Full-stack Web Development Student
-          </h2>
-          <p className="text-lg">
-            I am a student, currently learning web development skills such as
-            Next.js, React.js, Tailwindcss, and database management. I can feel
-            a sense of accomplishment when my code is recognized and
-            appreciated.
-          </p>
+    <div className="relative max-w-5xl mx-auto ">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        variants={FadeContainer}
+        viewport={{ once: true }}
+        className="grid min-h-screen p-20 place-content-center"
+      >
+        <div className="relative flex flex-col items-center w-full gap-10 mx-auto">
+          <motion.div
+            variants={popUp}
+            className="relative flex items-center justify-center p-2 rounded-full w-52 h-52 before:absolute before:inset-0 before:border-t-4 before:border-b-4 before:border-black before:dark:border-white before:rounded-full before:animate-photo-spin"
+          >
+            <Image
+              src="/static/images/avatar.png"
+              width={933}
+              height={933}
+              alt="avatar zhongleiyang"
+              rounded="rounded-full"
+              loading="eager"
+            />
+          </motion.div>
+
+          <div className="flex flex-col w-full gap-4 p-5 text-center select-none ">
+            <div className="flex flex-col gap-4">
+              <motion.h1
+                variants={opacityVariant}
+                className="text-5xl font-bold lg:text-6xl font-sarina"
+              >
+                Zhong Leiyang
+              </motion.h1>
+              <motion.p
+                variants={opacityVariant}
+                className="font-semibold text-lg font-inter text-[#383838] dark:text-gray-200"
+              >
+                React Developer, Competitive Programmer, Full-stack Web
+                Development Student
+              </motion.p>
+            </div>
+
+            <motion.p
+              variants={opacityVariant}
+              className=" text-[#474747] font-barlow dark:text-gray-300 font-medium text-base text-center"
+            >
+              I am a student, currently learning web development skills such as
+              Next.js, React.js, Tailwindcss, and database management. I can
+              feel a sense of accomplishment when my code is recognized and
+              appreciated.
+            </motion.p>
+          </div>
         </div>
-        <div className="h-36 w-36">
-          <Image
-            src="/static/images/avatar.png"
-            width={260}
-            height={260}
-            alt="小康"
-            rounded="rounded-full"
-            loading="eager"
-            priority
-          />
-        </div>
-      </div>
-      {/* <div className="flex gap-6">
-        {HERO_LINKS.map((link, i) => (
-          <Link key={i} href={link.href} icon={false} animation={false}>
-            {link.icon}
-          </Link>
-        ))}
+      </motion.section>
+
+      {/* <div>
+        <SkillSection />
+        <BlogsSection blogs={blogs} />
+        <Contact />
       </div> */}
     </div>
   );

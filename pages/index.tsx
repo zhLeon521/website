@@ -1,14 +1,14 @@
 import Link from 'next/link';
 // import { getAllPosts } from "../lib/mdx";
 
-import LayoutWrapper from '../components/LayoutWrapper';
+import BlogListLayout from '@/layout/BlogListLayout';
 
-import PostCard from '../components/PostCard/PostCard';
+import PostCard from '@/components/PostCard/PostCard';
 
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
-import { YuqueAPI } from './api/yuqueApi-new';
-import Hero from '../components/Hero';
+import { YuqueAPI } from '@/pages/api/yuqueApi-new';
+import Hero from '@/components/Hero';
 
 export default function Home({ data }) {
   return (

@@ -8,7 +8,7 @@ export default function Header() {
       <div className="mx-auto flex h-[60px] max-w-5xl items-center justify-between px-2">
         <div>
           <Link href="/" aria-label={headerConfigs.title}>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between font-sarina">
               <div className="h-6 text-2xl font-semibold sm:block">
                 {headerConfigs.title}
               </div>
@@ -16,7 +16,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="flex items-center text-base leading-5 sm:gap-1">
+        <div className="flex items-center font-inter text-lg leading-5 sm:gap-1">
           <div className="hidden gap-1 sm:flex">
             {headerConfigs.navLinks.map((link) => (
               <Link

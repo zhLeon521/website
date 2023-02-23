@@ -4,7 +4,7 @@ import React from 'react';
 import { YuqueApi, Repo, Doc } from '@/pages/api/yuque-api';
 
 import ThemeSwitch from '@/components/ThemeSwitch';
-import LayoutWrapper from '@/components/LayoutWrapper';
+import BlogListLayout from '@/layout/BlogListLayout';
 
 import PostCard from '@/components/PostCard/PostCard';
 
@@ -18,7 +18,7 @@ export default function Blog({ docs }) {
   );
 
   return (
-    <>
+    <BlogListLayout>
       <div className="mb-8 space-y-8">
         <h1 className="text-6xl font-bold mb-8">Blog Lists</h1>
         <hr className="my-8" />
@@ -51,7 +51,7 @@ export default function Blog({ docs }) {
           <PostCard key={post.slug} {...post} />
         ))}
       </div>
-    </>
+    </BlogListLayout>
   );
 }
 
