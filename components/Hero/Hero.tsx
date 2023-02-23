@@ -30,19 +30,18 @@ export const popUp: Variants = {
 };
 
 const Hero = () => {
-  const ref = useRef();
+  const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     renderCanvas();
-    ref.current?.classList.add('transition-in');
+    if (ref.current) {
+      ref.current?.classList.add('transition-in');
+    }
   }, []);
 
   return (
     <div>
-      <canvas
-        className="bg-skin-base pointer-events-none absolute inset-0"
-        id="canvas"
-      />
+      <canvas className=" pointer-events-none absolute inset-0" id="canvas" />
       <div ref={ref} className="relative max-w-5xl mx-auto ">
         <motion.section
           initial="hidden"
