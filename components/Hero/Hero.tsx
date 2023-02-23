@@ -1,5 +1,5 @@
-import Link from '../Link/Link';
-import Image from '../../components/MDXComponents/Image';
+import Link from '@/components/Link/Link';
+import Image from '@/components/MDXComponents/Image';
 
 // import { HERO_LINKS } from '@/config/links';
 

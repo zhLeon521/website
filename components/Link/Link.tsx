@@ -1,14 +1,14 @@
-import { IconArrowUpRight } from '@tabler/icons'
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
+import { IconArrowUpRight } from '@tabler/icons';
+import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 
-import clsxm from '../../lib/clsxm'
+import clsxm from '@/lib/clsxm';
 
 type LinkProps = {
-  href: string
-  icon?: boolean
-  animation?: boolean
-  nextLinkProps?: Omit<NextLinkProps, 'href'>
-} & React.ComponentPropsWithRef<'a'>
+  href: string;
+  icon?: boolean;
+  animation?: boolean;
+  nextLinkProps?: Omit<NextLinkProps, 'href'>;
+} & React.ComponentPropsWithRef<'a'>;
 
 const Link = (props: LinkProps) => {
   const {
@@ -19,9 +19,9 @@ const Link = (props: LinkProps) => {
     className,
     nextLinkProps,
     ...rest
-  } = props
-  const isInternalLink = href && href.startsWith('/')
-  const isAnchorLink = href && href.startsWith('#')
+  } = props;
+  const isInternalLink = href && href.startsWith('/');
+  const isAnchorLink = href && href.startsWith('#');
 
   if (isInternalLink) {
     return (
@@ -33,14 +33,14 @@ const Link = (props: LinkProps) => {
             ['before:absolute before:-bottom-0.5 before:left-0 before:h-0.5 before:w-full before:origin-right before:scale-x-0 before:rounded before:bg-hong-fg before:transition-transform before:duration-300 before:ease-in-out before:content-[""] hover:before:origin-left hover:before:scale-x-100']:
               animation,
           },
-          className
+          className,
         )}
         {...nextLinkProps}
         {...rest}
       >
         {children}
       </NextLink>
-    )
+    );
   }
 
   if (isAnchorLink) {
@@ -53,19 +53,19 @@ const Link = (props: LinkProps) => {
             ['before:absolute before:-bottom-0.5 before:left-0 before:h-0.5 before:w-full before:origin-right before:scale-x-0 before:rounded before:bg-hong-fg before:transition-transform before:duration-300 before:ease-in-out before:content-[""] hover:before:origin-left hover:before:scale-x-100']:
               animation,
           },
-          className
+          className,
         )}
         {...rest}
       >
         {children}
       </a>
-    )
+    );
   }
 
   return (
     <a
-      target='_blank'
-      rel='noopener noreferrer'
+      target="_blank"
+      rel="noopener noreferrer"
       href={href}
       className={clsxm(
         'relative',
@@ -73,7 +73,7 @@ const Link = (props: LinkProps) => {
           ['before:absolute before:-bottom-0.5 before:left-0 before:h-0.5 before:w-full before:origin-right before:scale-x-0 before:rounded before:bg-hong-fg before:transition-transform before:duration-300 before:ease-in-out before:content-[""] hover:before:origin-left hover:before:scale-x-100']:
             animation,
         },
-        className
+        className,
       )}
       {...rest}
     >
@@ -82,12 +82,12 @@ const Link = (props: LinkProps) => {
         <span>
           <IconArrowUpRight
             size={16}
-            className='relative -top-px inline-block'
+            className="relative -top-px inline-block"
           />
         </span>
       )}
     </a>
-  )
-}
+  );
+};
 
-export default Link
+export default Link;

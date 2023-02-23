@@ -1,20 +1,17 @@
 // import { allSlugs, formatSlug, getPostBySlug } from '../../lib/mdx';
-import { formatDate } from '../../lib/formatDate';
+import { formatDate } from '@/components//lib/formatDate';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import { YuqueApi, Repo, Doc } from '../api/yuque-api';
+import { YuqueApi, Repo, Doc } from '@/pages/api/yuque-api';
 
 import RemarkToc from 'remark-toc';
 import RemarkSlug from 'remark-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
 
+import TableOfContents from '@/components/TableOfContents';
+import MDXComponents from '@/components/MDXComponents/MDXComponents';
 
-import TableOfContents from '../../components/TableOfContents'
-import MDXComponents  from '../../components/MDXComponents/MDXComponents';
-
-
-import LayoutWrapper from '../../components/LayoutWrapper';
-
+import LayoutWrapper from '@/components/LayoutWrapper';
 
 export default function Blog({ doc, mdxSource }) {
   const { title, updated_at } = doc;
@@ -45,16 +42,21 @@ export default function Blog({ doc, mdxSource }) {
   );
 }
 
-
 export const getStaticPaths = async () => {
   const api = new YuqueApi(process.env.YUQUE_TOKEN);
 
   const { data: currentUser } = await api.getUser();
   const { data: repos } = await api.getRepos(currentUser.login);
-  const [blogRepo] = repos.filter((repo) => repo.slug === process.env.REPO_SLUG);
+  const [blogRepo] = repos.filter(
+    (repo) => repo.slug === process.env.REPO_SLUG,
+  );
   const { data: docs } = await api.getDocs(blogRepo.namespace);
 
-  const paths = docs.filter((doc) => doc.status === 1).map((doc) => ({ params: { namespace: blogRepo.namespace, slug: doc.slug } }));
+  const paths = docs
+    .filter((doc) => doc.status === 1)
+    .map((doc) => ({
+      params: { namespace: blogRepo.namespace, slug: doc.slug },
+    }));
 
   return {
     paths,
@@ -70,7 +72,9 @@ export const getStaticProps = async ({ params: { namespace, slug } }) => {
   if (!nsp) {
     const { data: currentUser } = await api.getUser();
     const { data: repos } = await api.getRepos(currentUser.login);
-    const [blogRepo] = repos.filter((repo) => repo.slug === process.env.REPO_SLUG);
+    const [blogRepo] = repos.filter(
+      (repo) => repo.slug === process.env.REPO_SLUG,
+    );
 
     nsp = blogRepo.namespace;
   }

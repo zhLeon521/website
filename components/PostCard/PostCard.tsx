@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Image from '../../components/MDXComponents/Image';
-import { formatDate } from '../../lib/formatDate';
+import Image from '@/components/MDXComponents/Image';
+import { formatDate } from '@/lib/formatDate';
 
 const PostCard = (props) => {
   const { slug, title, description, updated_at, likes_count } = props;
@@ -10,7 +10,13 @@ const PostCard = (props) => {
       href={`/blog/${slug}`}
       className="flex flex-col space-y-3 rounded-2xl border border-accent-2 p-6 transition-all duration-300 hover:scale-105 hover:bg-accent-1"
     >
-      <Image src="/static/images/cover.png" width={1280} height={720} alt={title} rounded="rounded-lg" />
+      <Image
+        src="/static/images/cover.png"
+        width={1280}
+        height={720}
+        alt={title}
+        rounded="rounded-lg"
+      />
 
       <div className="flex-grow space-y-4">
         <h2 className="text-xl font-bold">{title}</h2>

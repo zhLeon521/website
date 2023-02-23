@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     const response = await api.getDocs(currentUser.login, BLOG_NAME);
     const data = response.data;
-    console.log(1121, data);
+    // console.log(1121, data);
     return {
       props: {
         data,

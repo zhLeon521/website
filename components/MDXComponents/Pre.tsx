@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { IconCheck, IconCopy } from '@tabler/icons';
 
-import { copyToClipboard } from '../../lib/copyToClipboard';
-
+import { copyToClipboard } from '@/lib/copyToClipboard';
 
 type Props = {
   children: JSX.Element;
@@ -32,7 +31,11 @@ export const Pre = ({ children, className, ...props }: Props): JSX.Element => {
 
   return (
     <div className="relative group">
-      <pre {...props} ref={preRef} className={clsx(className, 'focus:outline-none')}>
+      <pre
+        {...props}
+        ref={preRef}
+        className={clsx(className, 'focus:outline-none')}
+      >
         <div className="absolute flex items-center space-x-2 top-0 right-0 m-2">
           <span
             className={clsx('hidden fade-in text-xs text-white', {

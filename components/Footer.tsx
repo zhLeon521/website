@@ -1,6 +1,6 @@
-import Link from '../components/Link';
-import SocialIcon from '../components/SocialIcon';
-import { footerConfigs } from '../config/footer_links';
+import Link from '@/components/Link';
+import SocialIcon from '@/components/SocialIcon';
+import { footerConfigs } from '@/config/footer_links';
 
 export default function Footer() {
   return (
