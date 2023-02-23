@@ -1,7 +1,9 @@
 import Link from '@/components/Link/Link';
 import Image from '@/components/MDXComponents/Image';
+import { renderCanvas } from './renderCanvas';
 
 import { motion, Variants } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
 const FadeContainer: Variants = {
   hidden: { opacity: 0 },
@@ -28,65 +30,74 @@ export const popUp: Variants = {
 };
 
 const Hero = () => {
-  return (
-    <div className="relative max-w-5xl mx-auto ">
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        variants={FadeContainer}
-        viewport={{ once: true }}
-        className="grid min-h-screen p-20 place-content-center"
-      >
-        <div className="relative flex flex-col items-center w-full gap-10 mx-auto">
-          <motion.div
-            variants={popUp}
-            className="relative flex items-center justify-center p-2 rounded-full w-52 h-52 before:absolute before:inset-0 before:border-t-4 before:border-b-4 before:border-black before:dark:border-white before:rounded-full before:animate-photo-spin"
-          >
-            <Image
-              src="/static/images/avatar.png"
-              width={933}
-              height={933}
-              alt="avatar zhongleiyang"
-              rounded="rounded-full"
-              loading="eager"
-            />
-          </motion.div>
+  const ref = useRef();
 
-          <div className="flex flex-col w-full gap-4 p-5 text-center select-none ">
-            <div className="flex flex-col gap-4">
-              <motion.h1
-                variants={opacityVariant}
-                className="text-5xl font-bold lg:text-6xl font-sarina"
-              >
-                Zhong Leiyang
-              </motion.h1>
+  useEffect(() => {
+    renderCanvas();
+    ref.current?.classList.add('transition-in');
+  }, []);
+
+  return (
+    <div>
+      <canvas
+        className="bg-skin-base pointer-events-none absolute inset-0"
+        id="canvas"
+      />
+      <div ref={ref} className="relative max-w-5xl mx-auto ">
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          variants={FadeContainer}
+          viewport={{ once: true }}
+          className="grid min-h-screen p-20 place-content-center"
+        >
+          <div className="relative flex flex-col items-center w-full gap-10 mx-auto">
+            <motion.div
+              variants={popUp}
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+              className="relative flex items-center justify-center p-2 rounded-full w-52 h-52 before:absolute before:inset-0 before:border-t-4 before:border-b-4 before:border-black before:dark:border-white before:rounded-full before:animate-photo-spin"
+            >
+              <Image
+                src="/static/images/avatar.png"
+                width={933}
+                height={933}
+                alt="avatar zhongleiyang"
+                rounded="rounded-full"
+                loading="eager"
+              />
+            </motion.div>
+
+            <div className="flex flex-col w-full gap-4 p-5 text-center select-none ">
+              <div className="flex flex-col gap-4">
+                <motion.h1
+                  variants={opacityVariant}
+                  className="text-5xl font-bold lg:text-6xl font-sarina"
+                >
+                  Zhong Leiyang
+                </motion.h1>
+                <motion.p
+                  variants={opacityVariant}
+                  className="font-semibold text-lg font-inter text-[#383838] dark:text-gray-200"
+                >
+                  React Developer, Competitive Programmer, Full-stack Web
+                  Development Student
+                </motion.p>
+              </div>
+
               <motion.p
                 variants={opacityVariant}
-                className="font-semibold text-lg font-inter text-[#383838] dark:text-gray-200"
+                className=" text-[#474747] font-barlow dark:text-gray-300 font-medium text-base text-center"
               >
-                React Developer, Competitive Programmer, Full-stack Web
-                Development Student
+                I am a student, currently learning web development skills such
+                as Next.js, React.js, Tailwindcss, and database management. I
+                can feel a sense of accomplishment when my code is recognized
+                and appreciated.
               </motion.p>
             </div>
-
-            <motion.p
-              variants={opacityVariant}
-              className=" text-[#474747] font-barlow dark:text-gray-300 font-medium text-base text-center"
-            >
-              I am a student, currently learning web development skills such as
-              Next.js, React.js, Tailwindcss, and database management. I can
-              feel a sense of accomplishment when my code is recognized and
-              appreciated.
-            </motion.p>
           </div>
-        </div>
-      </motion.section>
-
-      {/* <div>
-        <SkillSection />
-        <BlogsSection blogs={blogs} />
-        <Contact />
-      </div> */}
+        </motion.section>
+      </div>
     </div>
   );
 };
