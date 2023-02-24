@@ -12,7 +12,7 @@ import MDXComponents from '@components/MDXComponents/MDXComponents';
 
 import BlogListLayout from '@layout/BlogListLayout';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { YuqueAPI } from '@pages/api/yuqueAPI';
+import { YuqueAPI } from '@pages/api/yuque-api';
 
 export default function Blog({ doc, mdxSource }) {
   const { title, updated_at } = doc;

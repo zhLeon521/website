@@ -8,7 +8,7 @@ import { GetStaticProps } from 'next';
 import Hero from '@components/Hero';
 import { Variants } from 'framer-motion';
 import AnimatedHeading from '@components/FramerMotion/AnimatedHeading';
-import { YuqueAPI } from '@pages/api/yuqueAPI';
+import { YuqueAPI } from '@pages/api/yuque-api';
 
 export const headingFromLeft: Variants = {
   hidden: { x: -200, opacity: 0 },
