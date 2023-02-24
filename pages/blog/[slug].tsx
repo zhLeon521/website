@@ -12,11 +12,10 @@ import MDXComponents from '@/components/MDXComponents/MDXComponents';
 
 import BlogListLayout from '@/layout/BlogListLayout';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { YuqueAPI } from '@/pages/api/yuqueApi';
+import { YuqueAPI } from '@/pages/api/yuqueAPI';
 
 export default function Blog({ doc, mdxSource }) {
   const { title, updated_at } = doc;
-
   return (
     <BlogListLayout>
       <div>
@@ -47,74 +46,34 @@ const ACCESS_TOKEN = process.env.YUQUE_TOKEN; // 你的语雀访问令牌
 const BLOG_NAME = process.env.REPO_SLUG;
 export const getStaticPaths: GetStaticPaths = async () => {
   const api = new YuqueAPI(ACCESS_TOKEN);
-  const getUserData = await api.getUser();
-  const currentUser = getUserData.data.data;
+  const { data: getUserData } = await api.getUser();
 
-  const response = await api.getDocs(currentUser.login, BLOG_NAME);
-  const data = response.data;
-  // console.log(2222, blogRepo);
-  /**
-   *  {
-  id: 727398,
-  type: 'Book',
-  slug: 'blog',
-  name: 'BLUEHEART',
-  user_id: 726433,
-  description: '梦为努力浇了水，爱在背后往前推',
-  creator_id: 726433,
-  public: 1,
-  items_count: 16,
-  likes_count: 0,
-  watches_count: 1,
-  content_updated_at: '2022-11-07T10:48:17.602Z',
-  updated_at: '2023-01-03T13:19:08.000Z',
-  created_at: '2020-02-04T09:35:56.000Z',
-  namespace: 'blueheart/blog',
-  user: {
-    id: 726433,
-    type: 'User',
-    login: 'blueheart',
-    name: 'zhLeon521',
-    description: '梦为努力浇了水，爱在背后往前推',
-    avatar_url: 'https://cdn.nlark.com/yuque/0/2020/png/726433/1580361667870-avatar/39c8ad5b-bdf8-42c2-a8ce-fc37a3596ed0.png',
-    followers_count: 28,
-    following_count: 0,
-    created_at: '2020-01-06T14:12:31.000Z',
-    updated_at: '2023-02-09T11:52:43.000Z',
-    _serializer: 'v2.user'
-  },
-  _serializer: 'v2.book'
-}
-   *
-   */
+  const { data: getDocsData } = await api.getDocs(getUserData.login, BLOG_NAME);
 
-  const paths = data.data.map((doc) => ({
-    params: { slug: doc.slug },
-  }));
-  // console.log(1231, paths);
-  /**
-  [ { params: { namespace: 'blueheart/blog', slug: 'of6rug' } },
-  { params: { namespace: 'blueheart/blog', slug: 'revsog' } },
-  { params: { namespace: 'blueheart/blog', slug: 'hlckeg' } },
-  { params: { namespace: 'blueheart/blog', slug: 'lfx6kp' } },]
-   */
+  // console.log(8866, getDocsData);
+
+  const paths = getDocsData
+    // .filter((doc) => doc.status === 1)
+    .map((doc) => ({
+      params: { slug: doc.slug },
+    }));
 
   return {
     paths,
-    fallback: true, // 未生成的页面在首次访问时生成
+    fallback: false, // 表示如果页面未预渲染，则显示404页面。此选项适用于需要确保所有页面都是预渲染的站点。
+    // 如果你有很多页面需要动态生成，可以使用 fallback: 'blocking' 参数指定页面是以阻塞方式生成的，这意味着在第一次访问时，页面将等待生成完成后再显示。
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
   try {
     const api = new YuqueAPI(ACCESS_TOKEN);
-    const getUserData = await api.getUser();
-    const currentUser = getUserData.data.data;
+    const { data: getUserData } = await api.getUser();
 
-    const { data: doc } = await api.getDoc(currentUser.login, BLOG_NAME, slug);
+    const { data: doc } = await api.getDoc(getUserData.login, BLOG_NAME, slug);
 
-    // console.log(999, doc.data.body);
-    const mdxSource = await serialize(doc.data.body, {
+    // console.log(999, doc.body);
+    const mdxSource = await serialize(doc.body, {
       parseFrontmatter: true,
       mdxOptions: {
         // table of contents, important!!
@@ -123,10 +82,10 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
       },
     });
     // console.log(87878, mdxSource);
-    // console.log(9999, doc);
+    // console.log(9999, doc.title);
     return {
       props: {
-        doc: doc.data,
+        doc,
         mdxSource,
       },
       revalidate: 10, // 60 * 60 * 24 每天重新生成页面

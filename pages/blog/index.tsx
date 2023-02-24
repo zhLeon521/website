@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 // import { getAllPosts } from "../lib/mdx";
 import { GetStaticProps } from 'next';
-import { YuqueAPI } from '@/pages/api/yuqueApi';
+import { YuqueAPI } from '@/pages/api/yuqueAPI';
 
 import ThemeSwitch from '@/components/ThemeSwitch';
 import BlogListLayout from '@/layout/BlogListLayout';
@@ -62,17 +62,18 @@ const BLOG_NAME = process.env.REPO_SLUG;
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const api = new YuqueAPI(ACCESS_TOKEN);
-    const getUserData = await api.getUser();
-    const currentUser = getUserData.data.data;
+    const { data: getUserData } = await api.getUser();
 
-    const response = await api.getDocs(currentUser.login, BLOG_NAME);
-    const data = response.data;
+    const { data: getDocsData } = await api.getDocs(
+      getUserData.login,
+      BLOG_NAME,
+    );
 
-    // console.log(1121, data.data);
+    // console.log(1121, getDocsData);
 
     return {
       props: {
-        docs: data.data,
+        docs: getDocsData,
       },
       revalidate: 10, // 60 * 60 * 24 每天重新生成页面
     };

@@ -1,43 +1,44 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
-
 // 定义 API 请求类
 export class YuqueAPI {
-  private readonly http: AxiosInstance;
+  private readonly baseUrl = 'https://www.yuque.com/api/v2';
+  private readonly headers = {
+    'User-Agent': 'lyzhong-yuque-blog',
+    'X-Auth-Token': this.accessToken,
+  };
 
   // 构造函数接受一个 access_token 参数
-  constructor(private readonly accessToken: string) {
-    // 创建 Axios 实例，并设置默认请求头
-    this.http = axios.create({
-      baseURL: 'https://www.yuque.com/api/v2',
-      headers: {
-        'User-Agent': 'lyzhong-yuque-blog',
-        'X-Auth-Token': accessToken, // 在请求头中携带访问令牌
-      },
-    });
+  constructor(private readonly accessToken: string) {}
+
+  private async fetchJson(url: string): Promise<any> {
+    const response = await fetch(url, { headers: this.headers });
+    return response.json();
   }
 
   // 获取用户信息
-  // 获取用户信息
-  async getUser(login?: string): Promise<AxiosResponse<any>> {
-    return this.http.get(`/user${login ? `s/${login}` : ''}`);
+  async getUser(login?: string): Promise<any> {
+    const url = `${this.baseUrl}/user${login ? `s/${login}` : ''}`;
+    return this.fetchJson(url);
   }
 
   // 获取指定用户的文档仓库列表
-  async getRepos(login: string, offset?: number): Promise<AxiosResponse<any>> {
-    return this.http.get(`/users/${login}/repos`);
+  async getRepos(login: string, offset?: number): Promise<any> {
+    const url = `${this.baseUrl}/users/${login}/repos`;
+    return this.fetchJson(url);
   }
 
   // 获取指定用户的文档列表
-  async getDocs(login: string, blogNames: string): Promise<AxiosResponse<any>> {
-    return this.http.get(`/repos/${login}/${blogNames}/docs`);
+  async getDocs(login: string, blogNames: string): Promise<any> {
+    const url = `${this.baseUrl}/repos/${login}/${blogNames}/docs`;
+    return this.fetchJson(url);
   }
 
   async getDoc(
     login: string,
     blogNames: string,
-    slug: string | string[],
-  ): Promise<AxiosResponse<any>> {
-    return this.http.get(`/repos/${login}/${blogNames}/docs/${slug}`);
+    slug: string | any,
+  ): Promise<any> {
+    const url = `${this.baseUrl}/repos/${login}/${blogNames}/docs/${slug}`;
+    return this.fetchJson(url);
   }
 
   // 其他 API 请求方法

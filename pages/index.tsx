@@ -5,10 +5,10 @@ import BlogListLayout from '@/layout/BlogListLayout';
 import PostCard from '@/components/PostCard/PostCard';
 
 import { GetStaticProps } from 'next';
-import { YuqueAPI } from '@/pages/api/yuqueApi';
 import Hero from '@/components/Hero';
 import { Variants } from 'framer-motion';
 import AnimatedHeading from '@/components/FramerMotion/AnimatedHeading';
+import { YuqueAPI } from '@/pages/api/yuqueAPI';
 
 export const headingFromLeft: Variants = {
   hidden: { x: -200, opacity: 0 },
@@ -41,7 +41,7 @@ export default function Home({ data }) {
 
       <HomeHeading title="🎯 最新文章" />
       <div className="grid grid-cols-1 gap-4 mx-0">
-        {data.data.slice(0, 5).map((post) => (
+        {data.slice(0, 5).map((post) => (
           <PostCard key={post.slug} {...post} />
         ))}
 
@@ -76,17 +76,18 @@ const BLOG_NAME = process.env.REPO_SLUG;
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const api = new YuqueAPI(ACCESS_TOKEN);
-    const getUserData = await api.getUser();
-    const currentUser = getUserData.data.data;
+    const { data: getUserData } = await api.getUser();
 
-    const response = await api.getDocs(currentUser.login, BLOG_NAME);
-    const data = response.data;
+    const { data: getDocsData } = await api.getDocs(
+      getUserData.login,
+      BLOG_NAME,
+    );
 
-    // console.log(1121, data);
+    // console.log(2122, getDocsData);
 
     return {
       props: {
-        data,
+        data: getDocsData,
       },
       revalidate: 10, // 60 * 60 * 24 每天重新生成页面
     };
