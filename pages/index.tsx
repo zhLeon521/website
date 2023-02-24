@@ -1,24 +1,70 @@
 import Link from 'next/link';
-// import { getAllPosts } from "../lib/mdx";
 
 import BlogListLayout from '@/layout/BlogListLayout';
 
 import PostCard from '@/components/PostCard/PostCard';
 
-import axios from 'axios';
-import { GetServerSideProps } from 'next';
-import { YuqueAPI } from '@/pages/api/yuqueApi-new';
+import { GetStaticProps } from 'next';
+import { YuqueAPI } from '@/pages/api/yuqueApi';
 import Hero from '@/components/Hero';
+import { Variants } from 'framer-motion';
+import AnimatedHeading from '@/components/FramerMotion/AnimatedHeading';
+
+export const headingFromLeft: Variants = {
+  hidden: { x: -200, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.1,
+      type: 'spring',
+      stiffness: 70,
+    },
+  },
+};
+
+export function HomeHeading({ title }: { title: React.ReactNode | string }) {
+  return (
+    <AnimatedHeading
+      className="w-full my-6 ml-6 text-3xl tracking-wide font-bold text-left font-inter"
+      variants={headingFromLeft}
+    >
+      {title}
+    </AnimatedHeading>
+  );
+}
 
 export default function Home({ data }) {
   return (
     <>
       <Hero />
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {data.data.map((post) => (
+      <HomeHeading title="🎯 最新文章" />
+      <div className="grid grid-cols-1 gap-4 mx-0">
+        {data.data.slice(0, 5).map((post) => (
           <PostCard key={post.slug} {...post} />
         ))}
+
+        <Link
+          href="/blog"
+          className="flex items-center justify-center gap-1 mt-4 text-lg transition border-transparent font-inter active:scale-95 active:border-black w-fit group md:ml-7"
+        >
+          Read all posts
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="w-6 h-6 ml-1 transition group-hover:translate-x-2"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M17.5 12h-15m11.667-4l3.333 4-3.333-4zm3.333 4l-3.333 4 3.333-4z"
+            ></path>
+          </svg>
+        </Link>
       </div>
     </>
   );
@@ -27,29 +73,22 @@ export default function Home({ data }) {
 const ACCESS_TOKEN = process.env.YUQUE_TOKEN; // 你的语雀访问令牌
 const BLOG_NAME = process.env.REPO_SLUG;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
-    // const response = await axios.get(
-    //   `https://www.yuque.com/api/v2/repos/blueheart/blog/docs`,
-    //   {
-    //     headers: {
-    //       'X-Auth-Token': ACCESS_TOKEN, // 携带访问令牌的请求头
-    //       'Content-Type': 'application/json', // 请求数据的 MIME 类型
-    //     },
-    //   },
-    // );
-    // const data = response.data;
     const api = new YuqueAPI(ACCESS_TOKEN);
     const getUserData = await api.getUser();
     const currentUser = getUserData.data.data;
 
     const response = await api.getDocs(currentUser.login, BLOG_NAME);
     const data = response.data;
+
     // console.log(1121, data);
+
     return {
       props: {
         data,
       },
+      revalidate: 10, // 60 * 60 * 24 每天重新生成页面
     };
   } catch (error) {
     console.error(error);

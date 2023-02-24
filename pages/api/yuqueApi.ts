@@ -23,13 +23,21 @@ export class YuqueAPI {
   }
 
   // 获取指定用户的文档仓库列表
-  async getRopes(login: string, offset?: number): Promise<AxiosResponse<any>> {
+  async getRepos(login: string, offset?: number): Promise<AxiosResponse<any>> {
     return this.http.get(`/users/${login}/repos`);
   }
 
   // 获取指定用户的文档列表
   async getDocs(login: string, blogNames: string): Promise<AxiosResponse<any>> {
     return this.http.get(`/repos/${login}/${blogNames}/docs`);
+  }
+
+  async getDoc(
+    login: string,
+    blogNames: string,
+    slug: string | string[],
+  ): Promise<AxiosResponse<any>> {
+    return this.http.get(`/repos/${login}/${blogNames}/docs/${slug}`);
   }
 
   // 其他 API 请求方法

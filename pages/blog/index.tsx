@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 // import { getAllPosts } from "../lib/mdx";
-import { YuqueApi, Repo, Doc } from '@/pages/api/yuque-api';
+import { GetStaticProps } from 'next';
+import { YuqueAPI } from '@/pages/api/yuqueApi';
 
 import ThemeSwitch from '@/components/ThemeSwitch';
 import BlogListLayout from '@/layout/BlogListLayout';
@@ -46,7 +47,7 @@ export default function Blog({ docs }) {
         <div className="text-center text-xl">文章咱没搜到</div>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 mx-0">
         {filteredPosts.map((post) => (
           <PostCard key={post.slug} {...post} />
         ))}
@@ -55,27 +56,30 @@ export default function Blog({ docs }) {
   );
 }
 
-export const getStaticProps = async () => {
-  const api = new YuqueApi(process.env.YUQUE_TOKEN);
+const ACCESS_TOKEN = process.env.YUQUE_TOKEN; // 你的语雀访问令牌
+const BLOG_NAME = process.env.REPO_SLUG;
 
-  const { data: currentUser } = await api.getUser();
-  const { data: repos } = await api.getRepos(currentUser.login);
-  const slug = repos.map((repo) => repo.slug);
-  const [blogRepo] = repos.filter(
-    (repo) => repo.slug === process.env.REPO_SLUG,
-  );
-  const { data: docs } = await api.getDocs(blogRepo.namespace);
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const api = new YuqueAPI(ACCESS_TOKEN);
+    const getUserData = await api.getUser();
+    const currentUser = getUserData.data.data;
 
-  // console.log(10, repos);
-  // console.log(11, slug);
-  // console.log(12, blogRepo);
-  // console.log(13, docs);
+    const response = await api.getDocs(currentUser.login, BLOG_NAME);
+    const data = response.data;
 
-  return {
-    props: {
-      repo: blogRepo,
-      docs: docs.filter((doc) => doc.status === 1),
-    },
-    revalidate: 10, // In seconds
-  };
+    // console.log(1121, data.data);
+
+    return {
+      props: {
+        docs: data.data,
+      },
+      revalidate: 10, // 60 * 60 * 24 每天重新生成页面
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {},
+    };
+  }
 };
