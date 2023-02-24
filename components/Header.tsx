@@ -1,6 +1,6 @@
-import Link from '@/components/Link';
-import ThemeSwitch from '@/components/ThemeSwitch';
-import { headerConfigs } from '@/config/header_links';
+import Link from '@components/Link';
+import ThemeSwitch from '@components/ThemeSwitch';
+import { headerConfigs } from '@config/header_links';
 
 export default function Header() {
   return (

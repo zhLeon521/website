@@ -1,13 +1,16 @@
-import Link from '@/components/Link';
-import SocialIcon from '@/components/SocialIcon';
-import { footerConfigs } from '@/config/footer_links';
+import Link from '@components/Link';
+import SocialIcon from '@components/SocialIcon';
+import { footerConfigs } from '@config/footer_links';
 
 export default function Footer() {
   return (
     <footer>
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
-          <SocialIcon kind="mail" href={`mailto:${footerConfigs.socialLinks.email}`} />
+          <SocialIcon
+            kind="mail"
+            href={`mailto:${footerConfigs.socialLinks.email}`}
+          />
           <SocialIcon kind="github" href={footerConfigs.socialLinks.github} />
           <SocialIcon kind="gitee" href={footerConfigs.socialLinks.facebook} />
         </div>

@@ -1,5 +1,5 @@
-import Link from '@/components/Link/Link';
-import Image from '@/components/MDXComponents/Image';
+import Link from '@components/Link/Link';
+import Image from '@components/MDXComponents/Image';
 import { renderCanvas } from './renderCanvas';
 
 import { motion, Variants } from 'framer-motion';

@@ -1,7 +1,7 @@
 import { IconArrowUpRight } from '@tabler/icons';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 
-import clsxm from '@/lib/clsxm';
+import clsxm from '@lib/clsxm';
 
 type LinkProps = {
   href: string;

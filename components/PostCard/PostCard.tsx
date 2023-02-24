@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Image from '@/components/MDXComponents/Image';
-import { formatDate } from '@/lib/formatDate';
+import Image from '@components/MDXComponents/Image';
+import { formatDate } from '@lib/formatDate';
 import { useRef } from 'react';
 import { Variants, animate, motion } from 'framer-motion';
 

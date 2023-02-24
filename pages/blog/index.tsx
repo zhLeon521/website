@@ -2,12 +2,12 @@ import Link from 'next/link';
 import React from 'react';
 // import { getAllPosts } from "../lib/mdx";
 import { GetStaticProps } from 'next';
-import { YuqueAPI } from '@/pages/api/yuqueAPI';
+import { YuqueAPI } from '@pages/api/yuqueAPI';
 
-import ThemeSwitch from '@/components/ThemeSwitch';
-import BlogListLayout from '@/layout/BlogListLayout';
+import ThemeSwitch from '@components/ThemeSwitch';
+import BlogListLayout from '@layout/BlogListLayout';
 
-import PostCard from '@/components/PostCard/PostCard';
+import PostCard from '@components/PostCard/PostCard';
 
 import { IconSearch } from '@tabler/icons';
 

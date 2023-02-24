@@ -1,14 +1,14 @@
 import Link from 'next/link';
 
-import BlogListLayout from '@/layout/BlogListLayout';
+import BlogListLayout from '@layout/BlogListLayout';
 
-import PostCard from '@/components/PostCard/PostCard';
+import PostCard from '@components/PostCard/PostCard';
 
 import { GetStaticProps } from 'next';
-import Hero from '@/components/Hero';
+import Hero from '@components/Hero';
 import { Variants } from 'framer-motion';
-import AnimatedHeading from '@/components/FramerMotion/AnimatedHeading';
-import { YuqueAPI } from '@/pages/api/yuqueAPI';
+import AnimatedHeading from '@components/FramerMotion/AnimatedHeading';
+import { YuqueAPI } from '@pages/api/yuqueAPI';
 
 export const headingFromLeft: Variants = {
   hidden: { x: -200, opacity: 0 },

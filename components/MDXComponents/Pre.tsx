@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { IconCheck, IconCopy } from '@tabler/icons';
 
-import { copyToClipboard } from '@/lib/copyToClipboard';
+import { copyToClipboard } from '@lib/copyToClipboard';
 
 type Props = {
   children: JSX.Element;

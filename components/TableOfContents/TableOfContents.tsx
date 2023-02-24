@@ -1,8 +1,8 @@
 // import { IconList } from '@tabler/icons'
 import React from 'react';
 
-import clsxm from '@/lib/clsxm';
-import { useHeadings, useScrollspy } from '@/hooks';
+import clsxm from '@lib/clsxm';
+import { useHeadings, useScrollspy } from '@hooks';
 import { IconList } from '@tabler/icons';
 
 import Link from '../Link';

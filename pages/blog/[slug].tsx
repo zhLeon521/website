@@ -1,5 +1,5 @@
 // import { allSlugs, formatSlug, getPostBySlug } from '../../lib/mdx';
-import { formatDate } from '@/lib/formatDate';
+import { formatDate } from '@lib/formatDate';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
@@ -7,12 +7,12 @@ import RemarkToc from 'remark-toc';
 import RemarkSlug from 'remark-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
 
-import TableOfContents from '@/components/TableOfContents';
-import MDXComponents from '@/components/MDXComponents/MDXComponents';
+import TableOfContents from '@components/TableOfContents';
+import MDXComponents from '@components/MDXComponents/MDXComponents';
 
-import BlogListLayout from '@/layout/BlogListLayout';
+import BlogListLayout from '@layout/BlogListLayout';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { YuqueAPI } from '@/pages/api/yuqueAPI';
+import { YuqueAPI } from '@pages/api/yuqueAPI';
 
 export default function Blog({ doc, mdxSource }) {
   const { title, updated_at } = doc;
