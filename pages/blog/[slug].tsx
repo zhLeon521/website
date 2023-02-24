@@ -126,7 +126,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
     // console.log(9999, doc);
     return {
       props: {
-        doc,
+        doc: doc.data,
         mdxSource,
       },
       revalidate: 10, // 60 * 60 * 24 每天重新生成页面
