@@ -30,17 +30,18 @@ const PostCard = (props) => {
       whileInView={animate ? 'visible' : ''}
       whileHover={{ scale: 1.05 }}
       // viewport={{ once: true }}
-      className="bg-white font-inter dark:bg-darkSecondary rounded-2xl p-2 flex flex-col sm:flex-row items-center w-full sm:w-[95%] mx-auto gap-2 md:gap-7 shadow-md md:shadow-lg"
+      className="bg-white font-intertransform transition-transform duration-00 ease-in-out dark:bg-darkSecondary rounded-2xl p-2 flex flex-col sm:flex-row items-center w-full  mx-auto gap-2 md:gap-7 shadow-md md:shadow-lg"
     >
-      <div className="w-full">
+      <div className="w-1/2">
         <Image
           title={title}
           alt={title}
           src={cover ? cover : '/static/images/cover.png'}
-          width={1200}
-          height={630}
+          width={1280}
+          height={720}
           quality={65}
-          className="my-auto items-center transition-all duration-400 backdrop-blur-xl rounded-xl object-cover"
+          rounded="rounded-lg"
+          className="my-auto items-center transition-all duration-400 backdrop-blur-xl rounded-xl object-cover w-full h-full"
         />
       </div>
 
@@ -59,7 +60,7 @@ const PostCard = (props) => {
           <div className="z-10 flex items-center gap-3 font-barlow">
             <div className="w-[40px]">
               <Image
-                alt="Jatin Sharma"
+                alt="Zhong Leiyang"
                 height={933}
                 width={933}
                 src="/static/images/avatar.png"

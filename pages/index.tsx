@@ -26,7 +26,7 @@ export const headingFromLeft: Variants = {
 export function HomeHeading({ title }: { title: React.ReactNode | string }) {
   return (
     <AnimatedHeading
-      className="w-full my-6 ml-6 text-3xl tracking-wide font-bold text-left font-inter"
+      className="w-full my-8  text-3xl tracking-wide font-bold text-left font-inter"
       variants={headingFromLeft}
     >
       {title}
@@ -47,7 +47,7 @@ export default function Home({ data }) {
 
         <Link
           href="/blog"
-          className="flex items-center justify-center gap-1 mt-4 text-lg transition border-transparent font-inter active:scale-95 active:border-black w-fit group md:ml-7"
+          className="flex items-center justify-center gap-1 mt-6 text-lg transition border-transparent font-inter active:scale-95 active:border-black w-fit group "
         >
           Read all posts
           <svg
