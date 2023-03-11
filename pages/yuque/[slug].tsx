@@ -9,6 +9,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 
 import TableOfContents from '@components/TableOfContents';
 import MDXComponents from '@components/MDXComponents/MDXComponents';
+import { components } from '@components/MDXComponents';
 
 import BlogListLayout from '@layout/BlogListLayout';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -28,7 +29,7 @@ export default function Blog({ doc, mdxSource }) {
         <div className="mt-8 flex flex-col justify-between lg:flex-row">
           <article className="w-full lg:w-[720px]">
             <div className="prose prose-zinc pr-20 w-full max-w-none dark:prose-invert">
-              <MDXRemote {...mdxSource} components={MDXComponents} />
+              <MDXRemote {...mdxSource} components={components} />
             </div>
           </article>
           <aside className="lg:max-w-[270px]">

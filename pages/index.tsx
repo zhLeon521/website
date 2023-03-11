@@ -46,7 +46,7 @@ export default function Home({ data }) {
         ))}
 
         <Link
-          href="/blog"
+          href="/yuque"
           className="flex items-center justify-center gap-1 mt-6 text-lg transition border-transparent font-inter active:scale-95 active:border-black w-fit group "
         >
           Read all posts
