@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+const { fontFamily } = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -13,7 +17,10 @@ module.exports = {
       inter: ['Inter', 'sans-serif'],
       sarina: ['Sarina', 'cursive'],
       barlow: ['Barlow', 'sans-serif'],
-      mono: ['monospace'],
+      // mono: ['monospace'],
+      sans: ['Inter', ...fontFamily.sans],
+
+      mono: ['Fira Code', ...fontFamily.mono],
     },
 
     // colors: {
@@ -46,6 +53,42 @@ module.exports = {
         darkSecondary: '#25282A',
         darkWhite: '#f2f5fa',
         'dark-3': '#b8b8b8',
+
+        accent: 'var(--color-accent)',
+        fore: {
+          primary: 'var(--color-fore-primary)',
+          secondary: 'var(--color-fore-secondary)',
+          subtle: 'var(--color-fore-subtle)',
+        },
+        back: {
+          primary: 'var(--color-back-primary)',
+          secondary: 'var(--color-back-secondary)',
+          subtle: 'var(--color-back-subtle)',
+          accent: 'var(--color-back-accent)',
+        },
+        teal: colors.teal,
+      },
+      letterSpacing: {
+        widestest: '0.2em',
+      },
+      backgroundSize: {
+        200: '150%',
+      },
+      outline: {
+        accent: ['2px dotted var(--color-accent)', '2px'],
+      },
+      animation: {
+        'blob-spin': 'blobbing 25s linear infinite',
+      },
+      keyframes: {
+        blobbing: {
+          from: {
+            transform: 'rotate(0deg)',
+          },
+          to: {
+            transform: 'rotate(360deg)',
+          },
+        },
       },
       listStyleType: {
         square: 'square',

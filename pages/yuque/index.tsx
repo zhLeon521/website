@@ -46,7 +46,12 @@ export default function Blog({ docs }) {
       {!filteredPosts.length && (
         <div className="text-center text-xl">文章咱没搜到</div>
       )}
-fhhdgasdgasjhdghasjdgajskg 
+
+      <div className="grid grid-cols-1 gap-4 mx-0">
+        {filteredPosts.map((post) => (
+          <PostCard key={post.slug} {...post} />
+        ))}
+      </div>
     </BlogListLayout>
   );
 }
