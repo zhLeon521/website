@@ -15,11 +15,11 @@ const TableOfContents = () => {
   );
 
   return (
-    <div className="hidden lg:block">
-      <div className="mb-4 flex items-center gap-4">
-        <IconList size={18} />
-        <div>Table of contents</div>
-      </div>
+    <div className="hidden lg:block text-fore-subtle">
+      <h2 className="mb-4 flex items-center gap-4 font-normal text-accent tracking-widestest">
+        TABLE OF CONTENTS
+      </h2>
+
       <div>
         {headings.map((heading) => {
           const { id, level, title } = heading;
@@ -29,14 +29,15 @@ const TableOfContents = () => {
               key={id}
               href={`#${id}`}
               className={clsxm(
-                'block border-l-2 border-l-zinc-300 pt-[10px] pr-[10px] pb-[10px] text-sm leading-[1.2] text-accent-5 transition-all duration-300 hover:text-red-500 dark:border-l-zinc-700',
+                'block border-l-2 border-l-zinc-300 pt-[8px] pr-[20px] pb-[8px] text-sm leading-[1.2] text-accent-5 transition-all duration-300 hover:text-accent dark:border-l-zinc-700',
                 {
-                  ['border-l-red-500 text-red-500 dark:border-l-red-600 font-bold text-md']:
+                  ['border-l-accent text-accent font-medium text-md']:
                     id === activeId,
                 },
               )}
               style={{
-                paddingLeft: level * 16,
+                paddingLeft:
+                  level === 1 ? 10 : level === 2 ? 28 : level === 3 ? 50 : 2,
               }}
               animation={false}
             >

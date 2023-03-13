@@ -1,8 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from './MDXComponents/Image'
-import classNames from 'clsx'
+import clsx from 'clsx'
 import { Pre } from './MDXComponents/Pre';
+import { CustomLink} from './CustomLink'
 
 export const components = {
   Image,
@@ -52,7 +53,17 @@ export const components = {
       </Link>
     );
   },
+  Link: CustomLink,
   strong: ({ ...props }) => <strong {...props} className="font-semibold" />,
+  h1: ({ ...props }) => {
+    return (
+      <h2
+        {...props}
+        data-heading
+        className="flex items-baseline mb-10 text-2xl font-bold leading-10 group mt-14 lg:text-3xl text-accent"
+      />
+    );
+  },
   h2: ({ ...props }) => {
     return (
       <h2
@@ -79,7 +90,7 @@ export const components = {
       <React.Fragment>
         {fileName && <div className="w-full code-filename">{fileName}</div>}
         <code
-          className={classNames('', {
+          className={clsx('', {
             'line-numbers': showLineNumbers !== undefined,
           })}
           id={id}
