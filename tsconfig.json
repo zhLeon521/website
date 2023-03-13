@@ -21,6 +21,16 @@
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",".contentlayer/generated", "pages/blog/[slug].jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".contentlayer/generated",
+    "pages/blog/[slug].jsx",
+    "lib/rehype-highlight-code.js",
+    "lib/rehype-highlight-line.js",
+    "contentlayer.config.js",
+    "lib/rehype-meta-attribute.js"
+  ],
   "exclude": ["node_modules"]
 }

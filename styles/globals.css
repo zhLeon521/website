@@ -186,3 +186,36 @@
   --color-code-keyword: hsl(160, 80%, 60%);
   --color-code-regex: hsl(160, 80%, 60%);
 }
+
+
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  ::-moz-selection {
+    background: var(--color-accent);
+    color: var(--color-back-primary);
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-back-primary);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-back-primary);
+    color: var(--color-fore-primary);
+    @apply overflow-x-hidden antialiased;
+  }
+
+  .full-width-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+}

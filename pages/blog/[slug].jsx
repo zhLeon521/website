@@ -42,8 +42,8 @@ export default function Post({ blog }) {
   // console.log(888, post.headings);
 
   return (
-    <div className="relative flex justify-between mt-12 mb-12 xl:-ml-52 flex-row-reverse">
-      <article className="max-w-3xl mt-56 min-w-0 text-base lg:text-lg text-fore-subtle">
+    <div className="relative flex justify-between mt-12 mb-12 xl:-ml-20 flex-row-reverse">
+      <article className="max-w-3xl min-w-0 text-base lg:text-lg text-fore-subtle">
         <div className="mb-2 text-sm tracking-normal text-fore-subtle" s>
           <div>
             <header className="w-full font-inter mb-10">

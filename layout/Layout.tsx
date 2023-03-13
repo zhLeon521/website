@@ -7,15 +7,16 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="flex min-h-screen w-full flex-col justify-between">
-      <>
+
+    <>
+      <div className="flex flex-col min-h-screen">
         <Header />
-        <main className="container mx-auto mb-16 max-w-5xl px-2">
+        <main className="container flex-grow max-w-screen-xl px-5 m-auto mt-16 sm:px-12 md:px-20">
           {children}
         </main>
         <Footer />
-      </>
-    </div>
+      </div>
+    </>
   );
 };
 

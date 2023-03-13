@@ -6,6 +6,9 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import GitHubSlugger from "github-slugger";
+import rehypeHighlightCode from './lib/rehype-highlight-code';
+import rehypeMetaAttribute from './lib/rehype-meta-attribute';
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 const headersRegex = /(#{1,6})\s+(.+)/g;
 
 const computedFields = {
@@ -80,24 +83,27 @@ const OtherPage = defineDocumentType(() => ({
 }));
 
 const contentLayerConfig = makeSource({
- contentDirPath: "data",
- documentTypes: [Blog, OtherPage],
- mdx: {
-  remarkPlugins: [remarkGfm],
-  rehypePlugins: [
-   rehypeSlug,
-   rehypeCodeTitles,
-   rehypePrism,
-   [
-    rehypeAutolinkHeadings,
-    {
-     properties: {
-      className: ["anchor"],
-     },
-    },
-   ],
-  ],
- },
+  contentDirPath: 'data',
+  documentTypes: [Blog, OtherPage],
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      rehypePrism,
+      rehypeMetaAttribute,
+      rehypeHighlightCode,
+      rehypeAccessibleEmojis,
+      [
+        rehypeAutolinkHeadings,
+        {
+          properties: {
+            className: ['anchor'],
+          },
+        },
+      ],
+    ],
+  },
 });
 
 export default contentLayerConfig;

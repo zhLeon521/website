@@ -37,20 +37,20 @@ export const Pre = ({ children, className, ...props }: Props): JSX.Element => {
         className={clsx(className, 'focus:outline-none')}
       >
         <div className="absolute flex items-center space-x-2 top-0 right-0 m-2">
-          <span
+          {/* <span
             className={clsx('hidden fade-in text-xs text-white', {
               'group-hover:flex': copied,
             })}
           >
             Copied!
-          </span>
+          </span> */}
 
           <button
             type="button"
             aria-label="Copy to Clipboard"
             onClick={onClick}
             disabled={copied}
-            className="absolute top-4 right-4 opacity-0 transition focus:outline-none group-hover:opacity-100"
+            className="absolute top-2 right-4 z-10 opacity-0 transition focus:outline-none group-hover:opacity-100"
           >
             {copied ? <IconCheck size={22} /> : <IconCopy size={22} />}
           </button>
