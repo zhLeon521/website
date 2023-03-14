@@ -1,45 +1,62 @@
-// import { allSlugs, formatSlug, getPostBySlug } from '../../lib/mdx';
 import { formatDate } from '@lib/formatDate';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
 import RemarkToc from 'remark-toc';
 import RemarkSlug from 'remark-slug';
-import rehypePrettyCode from 'rehype-pretty-code';
 
 import TableOfContents from '@components/TableOfContents';
-import MDXComponents from '@components/MDXComponents/MDXComponents';
 import { components } from '@components/MDXComponents';
 
 import BlogListLayout from '@layout/BlogListLayout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { YuqueAPI } from '@pages/api/yuque-api';
+import rehypeSlug from 'rehype-slug';
+import rehypeCodeTitles from 'rehype-code-titles';
+import rehypePrism from 'rehype-prism-plus';
+import rehypeMetaAttribute from '@lib/rehype-meta-attribute';
+import rehypeHighlightCode from '@lib/rehype-highlight-code';
+
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import remarkGfm from 'remark-gfm';
 
 export default function Blog({ doc, mdxSource }) {
-  const { title, updated_at } = doc;
+  const { title, updated_at, word_count } = doc;
   return (
-    <BlogListLayout>
-      <div>
-        <h1 className="font-bold text-6xl mb-2">{title}</h1>
-        <time dateTime={updated_at} className="text-lg font-medium">
-          {formatDate(updated_at)}
-        </time>
-        <hr className="my-8" />
 
-        <div className="mt-8 flex flex-col justify-between lg:flex-row">
-          <article className="w-full lg:w-[720px]">
-            <div className="prose prose-zinc pr-20 w-full max-w-none dark:prose-invert">
-              <MDXRemote {...mdxSource} components={components} />
-            </div>
-          </article>
-          <aside className="lg:max-w-[270px]">
-            <div className="sticky top-24">
-              <TableOfContents />
-            </div>
-          </aside>
+    <div className="relative flex justify-between mt-12 mb-12 xl:-mr-48 flex-row">
+      <article className="max-w-3xl min-w-0 text-base lg:text-lg text-fore-subtle">
+        <div className="mb-2 text-sm tracking-normal text-fore-subtle">
+          <div>
+            <header className="w-full font-inter mb-10">
+              <h1 className="mb-4 text-4xl font-extrabold lg:text-5xl text-fore-primary">
+                {title}
+              </h1>
+              <div className="mt-2 flex w-full flex-col items-start justify-between md:flex-row md:items-center">
+                <div>
+                  <div className="flex items-center">
+                    <time
+                      className="ml-0 text-md text-gray-700 font-inter dark:text-gray-300"
+                      dateTime={updated_at}
+                    >
+                      Zhong Leiyang / {formatDate(updated_at)}
+                    </time>
+                  </div>
+                </div>
+                <p className="min-w-32  text-md text-gray-600 dark:text-gray-400 ">
+                  {word_count} words • {88888}
+                </p>
+              </div>
+            </header>
+            <MDXRemote {...mdxSource} components={components} />
+          </div>
         </div>
-      </div>
-    </BlogListLayout>
+      </article>
+
+      <aside className="sticky hidden h-screen max-w-xs mt-8 ml-6 top-16 xl:block">
+        <TableOfContents />
+      </aside>
+    </div>
   );
 }
 
@@ -78,8 +95,15 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
       parseFrontmatter: true,
       mdxOptions: {
         // table of contents, important!!
-        remarkPlugins: [RemarkToc, RemarkSlug],
-        rehypePlugins: [rehypePrettyCode],
+        remarkPlugins: [RemarkToc, RemarkSlug, remarkGfm],
+        rehypePlugins: [
+          rehypeSlug,
+          rehypeCodeTitles,
+          rehypePrism,
+          rehypeMetaAttribute,
+          rehypeHighlightCode,
+          rehypeAccessibleEmojis,
+        ],
       },
     });
     // console.log(87878, mdxSource);
