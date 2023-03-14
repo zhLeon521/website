@@ -11,6 +11,10 @@ import PostCard from '@components/PostCard/PostCard';
 
 import { IconSearch } from '@tabler/icons';
 
+import { BlogList } from '@components/BlogList'
+
+
+
 // import { ListElement } from 'components/blog/BlogList';
 import { pick } from 'contentlayer/client';
 import { allBlogs } from 'contentlayer/generated';
@@ -23,7 +27,7 @@ export default function Blog() {
         Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
     );
   return (
-    <div className="mx-auto mb-16 flex max-w-2xl flex-col items-start justify-center">
+    <div className="mx-auto mb-16 flex max-w-3xl flex-col items-start justify-center">
       <h1 className="mb-4 flex items-center justify-center box-decoration-clone bg-clip-text text-center font-inter text-[2rem] font-semibold motion-reduce:transition-none">
         Tech Blog{' '}
         <span className="bg-gradient-to-r from-[#6310ff] to-[#1491ff] box-decoration-clone bg-clip-text text-fill-transparent dark:from-[#a2facf] dark:to-[#64acff]">
@@ -48,7 +52,7 @@ export default function Blog() {
       )}
       <ol className="relative mt-8 border-l border-slate-200 dark:border-slate-700">
         {posts.map((post, index) => (
-          <PostCard {...post} index={index} key={index} />
+          <BlogList {...post} index={index} key={index} />
         ))}
       </ol>
     </div>
