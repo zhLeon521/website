@@ -1,17 +1,12 @@
-// import MDXComponents from "components/MDX/Components";
 import { components } from '@components/MDXComponents';
 import Image from 'next/image';
 import Link from 'next/link';
-// import Avatar from "/public/assets/avatar.png";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { allBlogs } from 'contentlayer/generated';
 import { formatDate } from '@lib/formatDate';
 import clsx from 'clsx';
 import clsxm from '@lib/clsxm';
 import TableOfContents from '@components/TableOfContents/TableOfContents';
-// import { parseISO } from "/lib/utils";
-// import { meta } from "/config";
-// import { TocItem } from '@components/BlogToc/Toc';
 
 export async function getStaticPaths() {
   const paths = allBlogs.map((post) => ({
@@ -39,7 +34,7 @@ export default function Post({ blog }) {
   const post = allBlogs.find((post) => post.slug === blog.slug);
 
   const Component = useMDXComponent(post.body.code);
-  // console.log(888, post.headings);
+  // console.log(888, post.body.code);
 
   return (
     <div className="relative flex justify-between mt-12 mb-12 xl:-ml-20 flex-row-reverse">

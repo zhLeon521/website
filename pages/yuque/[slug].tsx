@@ -1,6 +1,6 @@
+import {  useMemo } from 'react';
+
 import { formatDate } from '@lib/formatDate';
-import { MDXRemote } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
 
 import RemarkToc from 'remark-toc';
 import RemarkSlug from 'remark-slug';
@@ -8,47 +8,52 @@ import RemarkSlug from 'remark-slug';
 import TableOfContents from '@components/TableOfContents';
 import { components } from '@components/MDXComponents';
 
-import BlogListLayout from '@layout/BlogListLayout';
+
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { YuqueAPI } from '@pages/api/yuque-api';
 import rehypeSlug from 'rehype-slug';
 import rehypeCodeTitles from 'rehype-code-titles';
-import rehypePrism from 'rehype-prism-plus';
 import rehypeMetaAttribute from '@lib/rehype-meta-attribute';
 import rehypeHighlightCode from '@lib/rehype-highlight-code';
+import rehypeHeadings from 'rehype-autolink-headings';
+
 
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import remarkGfm from 'remark-gfm';
 
-export default function Blog({ doc, mdxSource }) {
-  const { title, updated_at, word_count } = doc;
-  return (
+import { getMDXComponent } from 'mdx-bundler/client';
+import { bundleMDX } from 'mdx-bundler';
 
+export default function Blog({ code, mdxSource }) {
+  // const { title, updated_at, word_count } = code;
+
+  const Component = useMemo(() => getMDXComponent(code), [code]);
+  return (
     <div className="relative flex justify-between mt-12 mb-12 xl:-mr-48 flex-row">
       <article className="max-w-3xl min-w-0 text-base lg:text-lg text-fore-subtle">
         <div className="mb-2 text-sm tracking-normal text-fore-subtle">
           <div>
             <header className="w-full font-inter mb-10">
               <h1 className="mb-4 text-4xl font-extrabold lg:text-5xl text-fore-primary">
-                {title}
+                {code?.title}
               </h1>
               <div className="mt-2 flex w-full flex-col items-start justify-between md:flex-row md:items-center">
                 <div>
                   <div className="flex items-center">
                     <time
                       className="ml-0 text-md text-gray-700 font-inter dark:text-gray-300"
-                      dateTime={updated_at}
+                      dateTime={code?.updated_at}
                     >
-                      Zhong Leiyang / {formatDate(updated_at)}
+                      Zhong Leiyang / {formatDate(code?.updated_at)}
                     </time>
                   </div>
                 </div>
                 <p className="min-w-32  text-md text-gray-600 dark:text-gray-400 ">
-                  {word_count} words • {88888}
+                  {code?.word_count} words • {88888}
                 </p>
               </div>
             </header>
-            <MDXRemote {...mdxSource} components={components} />
+            <Component components={components} />
           </div>
         </div>
       </article>
@@ -91,27 +96,31 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
     const { data: doc } = await api.getDoc(getUserData.login, BLOG_NAME, slug);
 
     // console.log(999, doc.body);
-    const mdxSource = await serialize(doc.body, {
-      parseFrontmatter: true,
-      mdxOptions: {
-        // table of contents, important!!
-        remarkPlugins: [RemarkToc, RemarkSlug, remarkGfm],
-        rehypePlugins: [
-          rehypeSlug,
-          rehypeCodeTitles,
-          rehypePrism,
-          rehypeMetaAttribute,
-          rehypeHighlightCode,
-          rehypeAccessibleEmojis,
-        ],
-      },
-    });
-    // console.log(87878, mdxSource);
-    // console.log(9999, doc.title);
+
+      const { code } = await bundleMDX({
+        source: doc.body,
+        mdxOptions: (options) => {
+          options.rehypePlugins = [
+            ...(options.rehypePlugins ?? []),
+            rehypeMetaAttribute,
+            rehypeHighlightCode,
+            rehypeAccessibleEmojis,
+            rehypeSlug,
+            rehypeCodeTitles,
+            [rehypeHeadings, { behavior: 'append' }],
+          ];
+           options.remarkPlugins = [
+             ...(options.remarkPlugins ?? []),
+             RemarkToc,
+             RemarkSlug,
+             remarkGfm,
+           ];
+          return options;
+        },
+      });
     return {
       props: {
-        doc,
-        mdxSource,
+        code,
       },
       revalidate: 10, // 60 * 60 * 24 每天重新生成页面
     };
