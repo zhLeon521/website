@@ -193,6 +193,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+.scrollbars {
+  @apply scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-transparent scrollbar-thumb-rounded-xl;
+}
+
 @layer base {
   ::-moz-selection {
     background: var(--color-accent);

@@ -2,6 +2,8 @@ import Link from '@components/Link/Link';
 import Image from '@components/MDXComponents/Image';
 import { renderCanvas } from './renderCanvas';
 
+import { AnimatedSVGBack } from './AnimatedSVGBG';
+
 import { motion, Variants } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
 
@@ -41,6 +43,7 @@ const Hero = () => {
 
   return (
     <div>
+      <AnimatedSVGBack className="absolute top-0 left-1/2 -translate-x-1/2 hidden md:block" />
       <canvas className=" pointer-events-none absolute inset-0" id="canvas" />
       <div ref={ref} className="relative max-w-5xl mx-auto ">
         <motion.section

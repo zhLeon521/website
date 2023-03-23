@@ -1,6 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
+
 export default function Document() {
   return (
     <Html lang="en">
@@ -60,7 +61,8 @@ export default function Document() {
           crossOrigin="anonymous"
         />
       </Head>
-      <body className="overflow-x-hidden bg-white text-black antialiased transition-colors dark:bg-gray-900 dark:text-white">
+      <body className="overflow-x-hidden bg-white  text-black antialiased transition-colors dark:bg-gray-900 dark:text-white">
+        
         <Main />
         <NextScript />
       </body>
