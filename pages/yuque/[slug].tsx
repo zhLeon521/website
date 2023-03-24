@@ -24,19 +24,20 @@ import remarkGfm from 'remark-gfm';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { bundleMDX } from 'mdx-bundler';
 
-export default function Blog({ code, mdxSource }) {
+export default function Blog({ code, doc }) {
   // const { title, updated_at, word_count } = code;
 
   const Component = useMemo(() => getMDXComponent(code), [code]);
+  // console.log(333, code);
   return (
     <div className="relative flex justify-between mt-12 mb-12 xl:-mr-48 flex-row">
       <article className="max-w-3xl min-w-0 text-base lg:text-lg text-fore-subtle">
         <div className="mb-2 text-sm tracking-normal text-fore-subtle">
           <div>
             <header className="w-full font-inter mb-10">
-              <h1 className="mb-4 text-4xl font-extrabold lg:text-5xl text-fore-primary">
-                {code?.title}
-              </h1>
+              <p className="mb-4 text-4xl font-extrabold leading-10 text-fore-primary">
+                {doc?.title}
+              </p>
               <div className="mt-2 flex w-full flex-col items-start justify-between md:flex-row md:items-center">
                 <div>
                   <div className="flex items-center">
@@ -95,7 +96,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
     const { data: doc } = await api.getDoc(getUserData.login, BLOG_NAME, slug);
 
-    // console.log(999, doc.body);
+    // console.log(999, doc.title);
 
       const { code } = await bundleMDX({
         source: doc.body,
@@ -120,6 +121,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
       });
     return {
       props: {
+        doc,
         code,
       },
       revalidate: 10, // 60 * 60 * 24 每天重新生成页面
