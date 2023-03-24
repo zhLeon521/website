@@ -6,6 +6,7 @@ import { AnimatedSVGBack } from './AnimatedSVGBG';
 
 import { motion, Variants } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
+import Marquee from 'react-fast-marquee';
 
 const FadeContainer: Variants = {
   hidden: { opacity: 0 },
@@ -42,7 +43,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div>
+    <div  className='pb-10'>
       <AnimatedSVGBack className="absolute top-0 left-1/2 -translate-x-1/2 hidden md:block" />
       <canvas className=" pointer-events-none absolute inset-0" id="canvas" />
       <div ref={ref} className="relative max-w-5xl mx-auto ">
@@ -99,6 +100,15 @@ const Hero = () => {
             </div>
           </div>
         </motion.section>
+      </div>
+
+      <div className="fixed  px-5 overflow-x-hidden text-neutral-900 uppercase h-12 font-heading text-3xl font-bold bg-teal-300 tracking-wide marquee-container">
+        <Marquee gradientColor={[23, 23, 23]} gradientWidth={'200'}>
+          <span className="  px-2 text-2xl">
+            WE CHOOSE TO GO TO THE MOON IN THIS DECADE AND DO THE OTHER THINGS,
+            NOT BECAUSE THEY ARE EASY, BUT BECAUSE THEY ARE HARD.
+          </span>
+        </Marquee>
       </div>
     </div>
   );
