@@ -61,6 +61,7 @@ export const components = {
         {...props}
         data-heading
         className="flex items-baseline mb-10 text-2xl font-bold leading-10 group mt-14 lg:text-3xl text-accent"
+        style={{scrollMarginTop: '3rem'}}
       />
     );
   },
@@ -70,6 +71,7 @@ export const components = {
         {...props}
         data-heading
         className="flex items-baseline mb-8 text-2xl font-bold leading-10 group mt-14 lg:text-3xl text-accent"
+        style={{ scrollMarginTop: '3rem' }}
       />
     );
   },
@@ -79,6 +81,7 @@ export const components = {
         {...props}
         data-heading
         className="flex items-baseline mb-4 text-2xl font-bold leading-tight group mt-14 text-accent"
+        style={{ scrollMarginTop: '3rem' }}
       />
     );
   },

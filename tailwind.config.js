@@ -122,7 +122,6 @@ module.exports = {
             },
             'h1, h2, h3, h4, h5, h6': {
               position: 'relative',
-              scrollMarginTop: '90px',
 
               '& a::before': {
                 content: 'none !important',
