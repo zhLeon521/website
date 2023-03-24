@@ -15,7 +15,7 @@ const TableOfContents = () => {
   );
 
   return (
-    <div className="hidden lg:block text-fore-subtle">
+    <div className="hidden lg:block text-fore-subtle select-none">
       <h2 className="mb-4 flex items-center gap-4 font-normal text-accent tracking-widestest">
         TABLE OF CONTENTS
       </h2>

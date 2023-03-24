@@ -58,7 +58,7 @@ export default function Blog({ code, mdxSource }) {
         </div>
       </article>
 
-      <aside className="sticky hidden h-screen max-w-xs mt-8 ml-6 top-16 xl:block">
+      <aside className="sticky hidden h-screen max-w-xs mt-8 ml-6 top-16 select-text xl:block">
         <TableOfContents />
       </aside>
     </div>
