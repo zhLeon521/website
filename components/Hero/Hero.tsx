@@ -71,7 +71,7 @@ const Hero = () => {
               />
             </motion.div>
 
-            <div className="flex flex-col w-full gap-4 p-5 text-center select-none ">
+            <div className="flex flex-col w-full gap-4 p-5 text-center select-auto ">
               <div className="flex flex-col gap-4">
                 <motion.h1
                   variants={opacityVariant}

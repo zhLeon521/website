@@ -41,7 +41,7 @@ export default function Home({ data }) {
 
       <HomeHeading title="🎯 最新文章" />
       <div className="grid grid-cols-1 gap-4 mx-0">
-        {data.slice(0, 5).map((post) => (
+        {data?.slice(0, 5).map((post) => (
           <PostCard key={post.slug} {...post} />
         ))}
 

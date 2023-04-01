@@ -67,13 +67,13 @@ export function FloatMenu() {
                 />
               </Link>
               <Link
-                href="/about"
+                href="/notion"
                 onClick={() => {
                   setIsOpen(false);
                 }}
                 className="flex flex-row gap-5 items-center group-hover:opacity-80 group-hover:hover:opacity-100 group-hover:hover:scale-110 transition group-hover:active:scale-90"
               >
-                <p className="text-white">About</p>
+                <p className="text-white">Notion</p>
                 <InfoFill
                   className="block fill-neutral-900 bg-teal-300 rounded-xl p-3"
                   size="24px"

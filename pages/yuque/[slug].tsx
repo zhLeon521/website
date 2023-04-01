@@ -59,7 +59,7 @@ export default function Blog({ code, doc }) {
         </div>
       </article>
 
-      <aside className="sticky hidden h-screen max-w-xs mt-8 ml-6 top-16 select-text xl:block">
+      <aside className="sticky hidden h-screen max-w-xs mt-8 ml-6 top-16 select-auto xl:block">
         <TableOfContents />
       </aside>
     </div>
