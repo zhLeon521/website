@@ -39,7 +39,7 @@ export default function Post({ blog }) {
   return (
     <div className="relative flex justify-between mt-12 mb-12 xl:-ml-20 flex-row-reverse">
       <article className="max-w-3xl min-w-0 text-base lg:text-lg text-fore-subtle">
-        <div className="mb-2 text-sm tracking-normal text-fore-subtle" s>
+        <div className="mb-2 text-sm tracking-normal text-fore-subtle">
           <div>
             <header className="w-full font-inter mb-10">
               <h1 className="mb-4 text-4xl font-extrabold lg:text-5xl text-fore-primary">
