@@ -1,5 +1,5 @@
 import { getDatabase, convertToArticleList } from '../api/notion-api';
-import Article from './Article';
+import Article from '@components/Article';
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
