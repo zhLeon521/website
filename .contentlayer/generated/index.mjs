@@ -10,3 +10,5 @@ import { allOtherPages } from './OtherPage/_index.mjs'
 export { allBlogs, allOtherPages }
 
 export const allDocuments = [...allBlogs, ...allOtherPages]
+
+
