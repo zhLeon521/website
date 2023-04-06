@@ -67,7 +67,7 @@ export default function Post({ blog }) {
       </article>
 
       <aside className="sticky hidden h-screen max-w-xs mt-8 ml-6 top-16 xl:block">
-        <TableOfContents/>
+        <TableOfContents />
       </aside>
     </div>
   );

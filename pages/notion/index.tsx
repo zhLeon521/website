@@ -4,10 +4,11 @@ import Article from '@components/Article';
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ articles }) {
+  // console.log(99, articles);
   return (
     <>
       {articles.map((post) => {
-        // console.log(22, post);
+        console.log(22, post);
         const date = new Date(post.publishedDate).toLocaleString('en-US', {
           month: 'short',
           day: '2-digit',
