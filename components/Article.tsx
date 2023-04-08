@@ -8,37 +8,19 @@ function Article(props) {
   const slug = slugify(title).toLowerCase();
 
   return (
-    // <Link href={`/notion/${slug}`}>
-    //   <div className="group">
-    //     <Image
-    //       className="rounded-xl group-hover:opacity-75"
-    //       objectFit="cover"
-    //       src={article.coverImage}
-    //       placeholder="blur"
-    //       blurDataURL={article.coverImage}
-    //       width={684}
-    //       height={800}
-    //       layout="intrinsic"
-    //       alt={'article cover'}
-    //     />
-    //     <div className="text-left w-full">
-    //       <h3 className="mt-2 text-2xl">{article.title}</h3>
-    //       {/* {JSON.stringify(article)} */}
-    //       {/* <p>{article.summary}</p> */}
-    //       <span className="text-base font-semibold flex items-center">
-    //         {new Date(article.publishedDate).toLocaleDateString(
-    //           siteMetadata.locale,
-    //           {
-    //             year: 'numeric',
-    //             month: 'long',
-    //             day: 'numeric',
-    //           },
-    //         )}
-    //       </span>
-    //     </div>
-    //   </div>
-    // </Link>
-    11
+    <Link href={`/notion/${slug}`}>
+      <article className="block" key={props.id}>
+        <header className="">
+          <h2 className="mb-2 mt-14 font-montserrat text-2xl font-black sm:text-3xl">
+            {props.title}
+          </h2>
+          <small className=" text-s text-cyan-300">{props.date}</small>
+        </header>
+        <p className="mb-7 mt-2 font-montserrat text-lg text-text">
+          {props.summary}
+        </p>
+      </article>
+    </Link>
   );
 }
 
