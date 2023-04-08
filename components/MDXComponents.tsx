@@ -1,9 +1,9 @@
-import React from 'react'
-import Link from 'next/link'
-import Image from './MDXComponents/Image'
-import clsx from 'clsx'
+import React from 'react';
+import Link from 'next/link';
+import Image from './MDXComponents/Image';
+import clsx from 'clsx';
 import { Pre } from './MDXComponents/Pre';
-import { CustomLink} from './CustomLink'
+import { CustomLink } from './CustomLink';
 
 export const components = {
   Image,
@@ -13,7 +13,7 @@ export const components = {
       return (
         <a
           {...props}
-          className="underline text-fore-subtle hover:text-accent focus-visible:outline-accent focus-visible:text-accent"
+          className="underline font-LXGWBrightRegular text-fore-subtle hover:text-accent focus-visible:outline-accent focus-visible:text-accent"
           href={href}
           target="_blank"
           rel="noopener"
@@ -54,14 +54,16 @@ export const components = {
     );
   },
   Link: CustomLink,
-  strong: ({ ...props }) => <strong {...props} className="font-semibold" />,
+  strong: ({ ...props }) => (
+    <strong {...props} className="font-bold font-LXGWBrightRegular text-lg" />
+  ),
   h1: ({ ...props }) => {
     return (
       <h2
         {...props}
         data-heading
-        className="flex items-baseline mb-10 text-2xl font-bold leading-10 group mt-14 lg:text-3xl text-accent"
-        style={{scrollMarginTop: '3rem'}}
+        className="flex items-baseline mb-10 text-2xl font-bold font-LXGWBrightMedium leading-10 group mt-14 lg:text-3xl text-accent"
+        style={{ scrollMarginTop: '3rem' }}
       />
     );
   },
@@ -70,7 +72,7 @@ export const components = {
       <h2
         {...props}
         data-heading
-        className="flex items-baseline mb-8 text-2xl font-bold leading-10 group mt-14 lg:text-3xl text-accent"
+        className="flex items-baseline mb-8 text-2xl font-bold font-LXGWBrightMedium leading-10 group mt-14 lg:text-3xl text-accent"
         style={{ scrollMarginTop: '3rem' }}
       />
     );
@@ -80,18 +82,27 @@ export const components = {
       <h3
         {...props}
         data-heading
-        className="flex items-baseline mb-4 text-2xl font-bold leading-tight group mt-14 text-accent"
+        className="flex items-baseline mb-4 text-2xl font-LXGWBrightMedium font-bold leading-tight group mt-14 text-accent"
         style={{ scrollMarginTop: '3rem' }}
       />
     );
   },
   p: ({ ...props }) => {
-    return <p {...props} className="my-6 leading-7 lg:leading-8" />;
+    return (
+      <p
+        {...props}
+        className="my-6 leading-8 font-LXGWBrightRegular text-lg "
+      />
+    );
   },
   code: ({ children, showLineNumbers, fileName, id }) => {
     return (
       <React.Fragment>
-        {fileName && <div className="w-full code-filename">{fileName}</div>}
+        {fileName && (
+          <div className="w-full code-filename font-LXGWBrightMedium text-lg">
+            {fileName}
+          </div>
+        )}
         <code
           className={clsx('', {
             'line-numbers': showLineNumbers !== undefined,
@@ -104,7 +115,7 @@ export const components = {
     );
   },
   em: ({ ...props }) => {
-    return <em {...props} className="italic" />;
+    return <em {...props} className="italic font-LXGWBrightItalic text-lg" />;
   },
   hr: ({ ...props }) => {
     return <hr {...props} className="my-10 border-accent" />;
@@ -113,17 +124,25 @@ export const components = {
     return (
       <blockquote
         {...props}
-        className="px-5 py-2 my-6 text-base border-l-2 lg:-ml-6 bg-back-secondary border-accent"
+        className="px-5 py-2 my-6 text-lg font-LXGWBrightMediumItalic border-l-2 lg:-ml-6 bg-back-secondary border-accent"
       />
     );
   },
   ul: (props: any) => (
-    <ul className="mb-4 leading-relaxed list-disc list-inside" {...props} />
+    <ul
+      className="mb-4 leading-relaxed  list-disc list-inside font-LXGWBrightRegular text-lg"
+      {...props}
+    />
   ),
   ol: (props: any) => (
-    <ol className="pl-4 my-6 leading-7 list-decimal" {...props} />
+    <ol
+      className="pl-4 my-6 leading-8 list-decimal font-LXGWBrightRegular text-lg"
+      {...props}
+    />
   ),
-  li: (props: any) => <li className="mt-3" {...props} />,
+  li: (props: any) => (
+    <li className="mt-3 font-LXGWBrightRegular text-lg" {...props} />
+  ),
   CodeLink: ({ id, index, href, children, ...props }) => {
     const isExternal = href.startsWith('http');
     React.useEffect(() => {

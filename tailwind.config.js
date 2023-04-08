@@ -17,10 +17,13 @@ module.exports = {
       inter: ['Inter', 'sans-serif'],
       sarina: ['Sarina', 'cursive'],
       barlow: ['Barlow', 'sans-serif'],
-      // mono: ['monospace'],
       sans: ['Inter', ...fontFamily.sans],
 
-      mono: ['Fira Code', ...fontFamily.mono],
+      FiraCode: ['Fira Code', 'sans-serif'],
+      LXGWBrightRegular: ['LXGWBright Regular', 'sans-serif'],
+      LXGWBrightMedium: ['LXGWBright Medium', 'sans-serif'],
+      LXGWBrightItalic: ['LXGWBright Italic', 'sans-serif'],
+      LXGWBrightMediumItalic: ['LXGWBright MediumItalic', 'sans-serif'],
     },
 
     // colors: {

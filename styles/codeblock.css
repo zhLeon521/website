@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'LXGWBright Italic';
+  font-style: normal;
+  font-display: optional;
+  src: url(/fonts/LXGWBright/LXGWBright-Italic.woff2);
+}
 code,
 pre {
   background-color: var(--color-code-background);
@@ -25,6 +31,8 @@ code {
   padding: 0.2em 0.3em;
   border-radius: 0.2em;
   white-space: normal;
+  font-family: 'LXGWBright Italic', sans-serif;
+  font-weight: 500;
 }
 
 .token.parameter {

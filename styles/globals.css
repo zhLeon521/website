@@ -8,6 +8,30 @@
   font-display: optional;
   src: url(/fonts/FiraCode-VF.woff2);
 }
+@font-face {
+  font-family: 'LXGWBright Regular';
+  font-style: normal;
+  font-display: optional;
+  src: url(/fonts/LXGWBright/LXGWBright-Regular.woff2);
+}
+@font-face {
+  font-family: 'LXGWBright Medium';
+  font-style: normal;
+  font-display: optional;
+  src: url(/fonts/LXGWBright/LXGWBright-Medium.woff2);
+}
+@font-face {
+  font-family: 'LXGWBright Italic';
+  font-style: normal;
+  font-display: optional;
+  src: url(/fonts/LXGWBright/LXGWBright-Italic.woff2);
+}
+@font-face {
+  font-family: 'LXGWBright MediumItalic';
+  font-style: normal;
+  font-display: optional;
+  src: url(/fonts/LXGWBright/LXGWBright-MediumItalic.woff2);
+}
 
 @font-face {
   font-family: 'Barlow';
@@ -186,8 +210,6 @@
   --color-code-keyword: hsl(160, 80%, 60%);
   --color-code-regex: hsl(160, 80%, 60%);
 }
-
-
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';

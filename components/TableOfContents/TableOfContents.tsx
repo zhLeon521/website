@@ -16,7 +16,7 @@ const TableOfContents = () => {
 
   return (
     <div className="hidden lg:block text-fore-subtle select-none">
-      <h2 className="mb-4 flex items-center gap-4 font-normal text-accent tracking-widestest">
+      <h2 className="mb-4 flex items-center gap-4 font-LXGWBrightMediumItalic text-accent tracking-widestest">
         TABLE OF CONTENTS
       </h2>
 
@@ -29,9 +29,9 @@ const TableOfContents = () => {
               key={id}
               href={`#${id}`}
               className={clsxm(
-                'block border-l-2 border-l-zinc-300 pt-[8px] pr-[20px] pb-[8px] text-sm leading-[1.2] text-accent-5 transition-all duration-300 hover:text-accent dark:border-l-zinc-700',
+                'block border-l-2 border-l-zinc-300 pt-[8px] pr-[20px] pb-[8px] text-base leading-[1.2] text-accent-5 transition-all duration-300 hover:text-accent dark:border-l-zinc-700 font-LXGWBrightRegular font-medium',
                 {
-                  ['border-l-accent text-accent font-medium text-md']:
+                  ['border-l-accent text-accent font-LXGWBrightRegular font-bold text-lg']:
                     id === activeId,
                 },
               )}
